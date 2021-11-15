@@ -22,11 +22,41 @@ class Areas
             case 'cuadrado':
                 $resultado = $base * $altura;
                 break;
+            case 'triangulo':
+                $resultado = ($base * $altura)/2;
+                break;
         }
         return $resultado;
     }
 }
 
-interface area{
-    public function calcular(float $base, float $altura): float;
+/**
+ * Se hace uso de interfaces para respetar principio de Abierto/Cerrado. Sin embargo también sirve para inlustrar el
+ * principio de inversión de dependencias donde las clases no deberían depender de concreciones sino de abstracciones
+ * y eso se consigue usando interfaces, o clases abstractas.
+ */
+interface Area{
+    public static function calcular(float $base, float $altura): float;
+}
+
+/**
+ * Permite calcular el área del triángulo
+ */
+Class Triangulo implements Area{
+    public static function calcular(float $base, float $altura): float
+    {
+        // TODO: Implement calcular() method.
+        return ($base * $altura) / 2;
+    }
+}
+
+/**
+ * Permite Calcular área del cuadrado
+ */
+Class Cuadrado implements Area {
+    public static function calcular(float $base, float $altura): float
+    {
+        // TODO: Implement calcular() method.
+        return $base * $altura;
+    }
 }
